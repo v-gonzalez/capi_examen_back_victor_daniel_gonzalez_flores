@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'fecha_nacimiento' => 'datetime',
     ];
+
+    protected $appends = ['edad'];
+
+    public function getEdadAttribute() {
+        $today = Carbon::now();
+        $birth = Carbon::parse($this->fecha_nacimiento);
+        $delta = $today->diff($birth);
+        return $delta->y;
+    }
 
     public function domicilio() {
         return $this->hasOne(UserDomicilio::class, 'user_id', 'id');
