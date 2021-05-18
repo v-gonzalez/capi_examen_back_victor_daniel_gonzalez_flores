@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('domicilio')->limit(10)->get();
+        $users = User::with('domicilio')->get();
         return response()->json($users);
     }
 }
