@@ -14,7 +14,7 @@ class AlterTableUserDomicilioAddFechaNacimiento extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->date('fecha_nacimento');
+            $table->date('fecha_nacimiento');
         });
     }
 
@@ -26,7 +26,7 @@ class AlterTableUserDomicilioAddFechaNacimiento extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('fecha_nacimento');
+            $table->dropColumn('fecha_nacimiento');
         });
     }
 }
