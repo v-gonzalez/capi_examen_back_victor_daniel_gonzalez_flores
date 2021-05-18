@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'fecha_nacimiento',
     ];
 
     /**
@@ -39,5 +40,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'fecha_nacimiento' => 'datetime',
     ];
+
+    public function domicilio() {
+        return $this->hasOne(UserDomicilio::class, 'user_id', 'id');
+    }
 }
